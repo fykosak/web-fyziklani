@@ -5,7 +5,7 @@
                data-pswp-width="{$image['width']}"
                data-pswp-height="{$image['height']}"
                target="_blank">
-                <img src="{$image['src']}" alt="" class="w-100 shadow-1-strong rounded mb-4" style="aspect-ratio: 4/3; object-fit: cover;"/>
+                <img src="{isset($image['previewSrc'])?$image['previewSrc']:$image['src']}" alt="" class="w-100 shadow-1-strong rounded mb-4" style="aspect-ratio: 4/3; object-fit: cover;"/>
             </a>
         </div>
     {/foreach}

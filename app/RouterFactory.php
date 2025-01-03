@@ -282,14 +282,17 @@ class RouterFactory
                 'presenter' => 'Problems',
                 'action' => 'default',
                 null => self::useTranslateFilter($domainList, $routerMapping['default']),
-            ]);
-
-        $router->withModule('Default')
-            ->addRoute('//<domain>/<presenter>[/<action>]', [
+            ])
+            ->addRoute('//<domain>/media/preview/<path .+>', [
+                'presenter' => 'Default',
+                'action' => 'preview',
+                null => self::useTranslateFilter($domainList, $routerMapping['default']),
+            ])->addRoute('//<domain>/<presenter>[/<action>]', [
                 'presenter' => 'Default',
                 'action' => 'default',
                 null => self::useTranslateFilter($domainList, $routerMapping['default']),
-            ]);
+            ])
+            ;
 
         return $router;
     }
