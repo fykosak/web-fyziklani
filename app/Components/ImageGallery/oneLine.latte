@@ -6,7 +6,7 @@
         <div class="col-lg-2 col-md-12 mb-2 mb-lg-0">
             <a href="#" data-index="{$image['index']}">
                 <div class="position-relative mb-4">
-                    <img src="{$image['src']}" alt="" class="w-100 shadow-1-strong rounded" style="aspect-ratio: 4/3; object-fit: cover;"/>
+                    <img src="{isset($image['previewSrc'])?$image['previewSrc']:$image['src']}" alt="" class="w-100 shadow-1-strong rounded" style="aspect-ratio: 4/3; object-fit: cover;" loading="lazy"/>
                     {if $iterator->isLast() && count($images) > count($previewImages)}
                         <div class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(0, 0, 0, 0.5);">
                             <i class="fas fa-search-plus text-white fs-3"></i>
