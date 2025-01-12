@@ -162,6 +162,10 @@ class RouterFactory
             ]);
 
         $router->withModule('Default')
+            ->addRoute('//<domain>/media/preview/<path .+>', [
+                'presenter' => 'Default',
+                'action' => 'preview',
+            ])
             ->addRoute('//<domain>/<presenter>[/<action>]', [
                 'presenter' => 'Default',
                 'action' => 'default',
@@ -183,6 +187,10 @@ class RouterFactory
             ]);
 
         $router->withModule('Default')
+            ->addRoute('//<domain>/media/preview/<path .+>', [
+                'presenter' => 'Default',
+                'action' => 'preview',
+            ])
             ->addRoute('//<domain>/(international|erasmus)', [
                 'presenter' => 'Erasmus',
                 'lang' => 'en',
@@ -202,6 +210,10 @@ class RouterFactory
         $router = new RouteList();
 
         $router->withModule('Default')
+            ->addRoute('//<domain>/media/preview/<path .+>', [
+                'presenter' => 'Default',
+                'action' => 'preview',
+            ])
             ->addRoute('//<domain>/<presenter>[/<action>]', [
                 'presenter' => 'Default',
                 'action' => 'default',
@@ -228,6 +240,10 @@ class RouterFactory
                 'presenter' => 'Results',
                 'action' => 'default',
                 null => self::useTranslateFilter($domainList, $routerMapping['default'])
+            ])
+            ->addRoute('//<domain>/media/preview/<path .+>', [
+                'presenter' => 'Default',
+                'action' => 'preview',
             ]);
 
         $router->withModule('Default')
@@ -252,10 +268,10 @@ class RouterFactory
             ]);
 
         $router->withModule('Events')
-        ->addRoute('//<domain>/akce/tsaf/<year>-<month>', [
-            'presenter' => 'Tsaf',
-            'action' => 'detail'
-        ]);
+            ->addRoute('//<domain>/akce/tsaf/<year>-<month>', [
+                'presenter' => 'Tsaf',
+                'action' => 'detail'
+            ]);
 
         $router->addRoute('//<domain>/<module events|akce>/[<presenter>[/<action>]]', [
             'presenter' => 'Default',
@@ -286,13 +302,12 @@ class RouterFactory
             ->addRoute('//<domain>/media/preview/<path .+>', [
                 'presenter' => 'Default',
                 'action' => 'preview',
-                null => self::useTranslateFilter($domainList, $routerMapping['default']),
-            ])->addRoute('//<domain>/<presenter>[/<action>]', [
+            ])
+            ->addRoute('//<domain>/<presenter>[/<action>]', [
                 'presenter' => 'Default',
                 'action' => 'default',
                 null => self::useTranslateFilter($domainList, $routerMapping['default']),
-            ])
-            ;
+            ]);
 
         return $router;
     }
