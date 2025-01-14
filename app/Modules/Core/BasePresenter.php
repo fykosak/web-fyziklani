@@ -146,18 +146,11 @@ abstract class BasePresenter extends Presenter
         return new PdfGalleryControl($this->getContext());
     }
 
-    private readonly string $wwwDir;
-
-    public function injectWwwDir(Container $container): void
+    final public function actionImageGaleryComponentImagePreview(string $path): void
     {
-        $this->wwwDir = $container->getParameters()['wwwDir'];
-    }
-
-    public function actionPreview(string $path): void
-    {
-        $basepath = realpath($this->wwwDir . '/media');
+        $basepath = realpath($this->context->getParameter('wwwDir') . '/media');
         $path = realpath($basepath . '/' . $path);
-        if ($path === false || strpos($path, $basepath . '/') !== 0) {
+        if ($path === false || !str_starts_with($path, $basepath . '/')) {
             $this->error();
         }
         $path = substr($path, strlen($basepath));

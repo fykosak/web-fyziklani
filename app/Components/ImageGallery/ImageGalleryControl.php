@@ -43,7 +43,7 @@ class ImageGalleryControl extends DIComponent
         foreach ($iterator as $file) {
             $imageInfo = getimagesize($file->getPathname());
             $wwwPath = substr($file->getPathname(), strlen($wwwDir));
-            if (strpos($wwwPath, '/media/') === 0) {
+            if (str_starts_with($wwwPath, '/media/')) {
                 $images[] = [
                     'src' => $wwwPath,
                     'width' => $imageInfo[0],

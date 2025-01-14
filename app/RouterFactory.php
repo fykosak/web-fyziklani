@@ -164,7 +164,7 @@ class RouterFactory
         $router->withModule('Default')
             ->addRoute('//<domain>/media/preview/<path .+>', [
                 'presenter' => 'Default',
-                'action' => 'preview',
+                'action' => 'imageGaleryComponentImagePreview',
             ])
             ->addRoute('//<domain>/<presenter>[/<action>]', [
                 'presenter' => 'Default',
@@ -189,7 +189,7 @@ class RouterFactory
         $router->withModule('Default')
             ->addRoute('//<domain>/media/preview/<path .+>', [
                 'presenter' => 'Default',
-                'action' => 'preview',
+                'action' => 'imageGaleryComponentImagePreview',
             ])
             ->addRoute('//<domain>/(international|erasmus)', [
                 'presenter' => 'Erasmus',
@@ -212,7 +212,7 @@ class RouterFactory
         $router->withModule('Default')
             ->addRoute('//<domain>/media/preview/<path .+>', [
                 'presenter' => 'Default',
-                'action' => 'preview',
+                'action' => 'imageGaleryComponentImagePreview',
             ])
             ->addRoute('//<domain>/<presenter>[/<action>]', [
                 'presenter' => 'Default',
@@ -243,7 +243,7 @@ class RouterFactory
             ])
             ->addRoute('//<domain>/media/preview/<path .+>', [
                 'presenter' => 'Default',
-                'action' => 'preview',
+                'action' => 'imageGaleryComponentImagePreview',
             ]);
 
         $router->withModule('Default')
@@ -301,7 +301,7 @@ class RouterFactory
             ])
             ->addRoute('//<domain>/media/preview/<path .+>', [
                 'presenter' => 'Default',
-                'action' => 'preview',
+                'action' => 'imageGaleryComponentImagePreview',
             ])
             ->addRoute('//<domain>/<presenter>[/<action>]', [
                 'presenter' => 'Default',
