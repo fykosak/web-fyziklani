@@ -27,7 +27,7 @@ class PdfGalleryControl extends DIComponent
         $this->cache = new Cache($storage, __NAMESPACE__);
     }
 
-    public static function getPdfs(string $path, string $wwwDir, bool $fromMetadata = false): array
+    public static function getPdfs(string $path, string $wwwDir): array
     {
         $pdfs = [];
         try {
@@ -37,21 +37,15 @@ class PdfGalleryControl extends DIComponent
         }
 
         foreach ($iterator as $file) {
-            if ($fromMetadata) {
-                try {
-                    $info = static::getPdfProp($file->getRealPath());
-                    $name = $info["Title"] ?? ($info["title"] ?? '');
-                } catch (\Exception $e) {
-                    $name = '';
-                }
-            } else {
-                $name = null;
+            $name = $file->getBasename('.pdf');
+            // if the name is urlencoded decode it
+            if (1 !== preg_match('/[^a-zA-Z0-9+%-_.]/', $name)) {
+                $name = urldecode($name);
             }
-
             $wwwPath = substr($file->getPathname(), strlen($wwwDir));
             $pdfs[] = [
                 'src' => $wwwPath,
-                'name' => $name ?: $file->getBasename('.pdf'),
+                'name' => $name,
             ];
         }
 
@@ -71,27 +65,21 @@ class PdfGalleryControl extends DIComponent
      * @throws UnknownImageFileException
      * @throws \Throwable
      */
-    public function render(string $path, ?string $style = null): void
+    public function render(string $path): void
     {
-        $style ??= "List";
-        $renderFile = __DIR__ . DIRECTORY_SEPARATOR . 'pdfGallery' . $style . '.latte';
-
         $this->template->pdfs = $this->cache->load(
             [$path, $this->wwwDir],
             fn() => self::getPdfs($path, $this->wwwDir)
         );
-        $this->template->render($renderFile);
+        $this->template->render(__DIR__ . DIRECTORY_SEPARATOR . 'pdfGalleryList.latte');
     }
-    public function renderFromMetadata(string $path, ?string $style = null): void
+    public function renderButtons(string $path): void
     {
-        $style ??= "List";
-        $renderFile = __DIR__ . DIRECTORY_SEPARATOR . 'pdfGallery' . $style . '.latte';
-
         $this->template->pdfs = $this->cache->load(
             [$path, $this->wwwDir],
-            fn() => self::getPdfs($path, $this->wwwDir, true)
+            fn() => self::getPdfs($path, $this->wwwDir)
         );
-        $this->template->render($renderFile);
+        $this->template->render(__DIR__ . DIRECTORY_SEPARATOR . 'pdfGalleryButtons.latte');
     }
 
     /**
@@ -104,57 +92,5 @@ class PdfGalleryControl extends DIComponent
             [$path, $this->wwwDir],
             fn() => self::getPdfs($path, $this->wwwDir)
         )) > 0;
-    }
-
-    /**
-     * magic from http://www.fpdf.org/en/script/script59.php
-     * @param string $file filename
-     * @return array whose keys are the names of the properties found in the file
-     */
-    public static function getPdfProp($file): array
-    {
-        $f = fopen($file, 'rb');
-        if (!$f) {
-            return [];
-        }
-        //Read the last 16KB
-        fseek($f, -16384, SEEK_END);
-        $s = fread($f, 16384);
-
-        //Extract cross-reference table and trailer
-        if (!preg_match("/xref[\r\n]+(.*)trailer(.*)startxref/s", $s, $a)) {
-            return [];
-        }
-        $xref = $a[1];
-        $trailer = $a[2];
-
-        //Extract Info object number
-        if (!preg_match('/Info ([0-9]+) /', $trailer, $a)) {
-            return [];
-        }
-        $object_no = (int) $a[1];
-
-        //Extract Info object offset
-        $lines = preg_split("/[\r\n]+/", $xref);
-        $line = $lines[1 + $object_no];
-        $offset = (int) $line;
-        if ($offset == 0) {
-            return [];
-        }
-        //Read Info object
-        fseek($f, $offset, SEEK_SET);
-        $s = fread($f, 1024);
-        fclose($f);
-
-        //Extract properties
-        if (!preg_match('/<<(.*)>>/Us', $s, $a)) {
-            return [];
-        }
-        $n = preg_match_all('|/([a-z]+) ?\((.*)\)|Ui', $a[1], $a);
-        $prop = array();
-        for ($i = 0; $i < $n; $i++) {
-            $prop[$a[1][$i]] = $a[2][$i];
-        }
-        return $prop;
     }
 }
