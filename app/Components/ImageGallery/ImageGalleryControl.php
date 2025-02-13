@@ -9,7 +9,6 @@ use Nette\Caching\Cache;
 use Nette\Caching\Storage;
 use Nette\DI\Container;
 use Nette\Utils\Finder;
-use Nette\Utils\Image;
 use Nette\Utils\UnknownImageFileException;
 
 class ImageGalleryControl extends DIComponent
@@ -44,11 +43,21 @@ class ImageGalleryControl extends DIComponent
         foreach ($iterator as $file) {
             $imageInfo = getimagesize($file->getPathname());
             $wwwPath = substr($file->getPathname(), strlen($wwwDir));
-            $images[] = [
-                'src' => $wwwPath,
-                'width' => $imageInfo[0],
-                'height' => $imageInfo[1],
-            ];
+            if (str_starts_with($wwwPath, '/media/')) {
+                $images[] = [
+                    'src' => $wwwPath,
+                    'width' => $imageInfo[0],
+                    'height' => $imageInfo[1],
+                    'srcset' => $wwwPath . ' ' . $imageInfo[0] . 'w,' . str_replace('/media/', '/media/preview/', $wwwPath) . ' 1024w',
+                    'previewSrc' => str_replace('/media/', '/media/preview/', $wwwPath),
+                ];
+            } else {
+                $images[] = [
+                    'src' => $wwwPath,
+                    'width' => $imageInfo[0],
+                    'height' => $imageInfo[1],
+                ];
+            }
         }
 
         usort($images, function ($a, $b) {

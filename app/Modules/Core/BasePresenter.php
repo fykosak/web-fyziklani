@@ -13,8 +13,11 @@ use Fykosak\Utils\Localization\GettextTranslator;
 use Fykosak\Utils\Localization\UnsupportedLanguageException;
 use Fykosak\Utils\UI\Navigation\NavItem;
 use Fykosak\Utils\UI\PageTitle;
+use Nette\Application\Responses\FileResponse;
 use Nette\Application\UI\Presenter;
 use Nette\Application\UI\Template;
+use Nette\DI\Container;
+use Nette\Utils\Image;
 
 abstract class BasePresenter extends Presenter
 {
@@ -141,5 +144,23 @@ abstract class BasePresenter extends Presenter
     protected function createComponentPdfGallery(): PdfGalleryControl
     {
         return new PdfGalleryControl($this->getContext());
+    }
+
+    final public function actionImageGaleryComponentImagePreview(string $path): void
+    {
+        $basepath = realpath($this->context->getParameter('wwwDir') . '/media');
+        $path = realpath($basepath . '/' . $path);
+        if ($path === false || !str_starts_with($path, $basepath . '/')) {
+            $this->error();
+        }
+        $path = substr($path, strlen($basepath));
+        if (!is_file($basepath . '/preview/' . $path)) {
+            $img = Image::fromFile($basepath . '/' . $path);
+            if (!is_dir(dirname($basepath . '/preview/' . $path))) {
+                mkdir(dirname($basepath . '/preview/' . $path), recursive: true);
+            }
+            $img->resize(1024, 1024)->save($basepath . '/preview/' . $path);
+        }
+        $this->sendResponse(new FileResponse($basepath . '/preview/' . $path));
     }
 }

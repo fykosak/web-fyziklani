@@ -36,7 +36,7 @@ Require all granted
 	RewriteRule ^o-nas/sin-slavy /o-nas/byvali-organizatori [R=301,L]
 	RewriteRule ^en / [R=301,L]
 
-	RewriteRule !\.(pdf|js|mjs|ico|gif|jpg|jpeg|png|webp|svg|css|rar|zip|7z|tar\.gz|map|eot|ttf|otf|woff|woff2|mp4)$ index.php [L]
+	RewriteRule !\.(pdf|js|mjs|ico|svg|css|rar|zip|7z|tar\.gz|map|eot|ttf|otf|woff|woff2|mp4)$ index.php [L]
 
 </IfModule>
 
