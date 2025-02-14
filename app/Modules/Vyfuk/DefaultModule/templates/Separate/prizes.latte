@@ -1,0 +1,33 @@
+{block title}Galerie cen{/block}
+
+{block main}
+<div class="panel color-auto">
+    <section class="inner-container">
+        <h1>Galerie cen</h1>
+        <p>
+            Na této stránce si můžete prohlédnout, jaké ceny můžete za účast ve Výfuku vyhrát.
+        </p>
+        <p>
+            Ceny můžete získat za <a n:href=":Default:Results:default">dobré umístění</a>, za zkompletovanou tabulku <a n:href=":Default:Problems:bingo">Výfučího binga</a> nebo za různé aktivity na <a n:href=":Default:Events:default">Výfučích akcích</a>.
+        </p>
+    </section>
+    <section class="inner-container">
+        {* TODO obrázky v lepší kvalitě a správných velikostech *}
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <img src="{$basePath}/images/prizes/5.jpg" class="w-100 shadow-1-strong rounded mb-4"/>
+                <img src="{$basePath}/images/prizes/2.jpg" class="w-100 shadow-1-strong rounded mb-4"/>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <img src="{$basePath}/images/prizes/8.jpg" class="w-100 shadow-1-strong rounded mb-4"/>
+                <img src="{$basePath}/images/prizes/7.jpg" class="w-100 shadow-1-strong rounded mb-4"/>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <img src="{$basePath}/images/prizes/9.jpg" class="w-100 shadow-1-strong rounded mb-4"/>
+                <img src="{$basePath}/images/prizes/3.jpg" class="w-100 shadow-1-strong rounded mb-4"/>
+            </div>
+        </div>
+        <p>Ceny do soutěže věnuje <a href="https://www.mff.cuni.cz/" target="_blank">MFF UK</a>. Některé ceny mohou pocházet od našich <a n:href=":Default:About:sponsors">partnerů</a>.</p>
+    </section>
+</div>
+{/block}

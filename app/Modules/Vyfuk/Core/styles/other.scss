@@ -2,8 +2,35 @@
     text-align: center;
 }
 
-.event-img {
+.other-event-img {
     max-width: 100%;
-    max-height: 300px;
+    max-height: 330px;
     padding: 10px;
+}
+
+.event-img-big {
+    max-width: 100%;
+    max-height: 230px;
+    padding: 10px;
+}
+
+.event-img-small {
+    max-width: 100%;
+    min-height: 110px;
+    padding: 10px;
+}
+
+.event-img-box-different {
+    text-align: center;
+    padding-bottom: 150px;
+}
+
+.event-img-box-big {
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+.event-img-box-mid {
+    text-align: center;
+    padding-bottom: 60px;
 }

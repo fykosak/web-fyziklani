@@ -1,13 +1,16 @@
 html,
 body {
   height: 100%;
-  text-align: justify;
   // font-size: $base-font-size;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
   background-color: black;
+}
+
+p {
+  text-align: justify;
 }
 
 .btn-outline {
@@ -291,8 +294,7 @@ a:hover {
 
 .series-selector {
   .dropdown-toggle {
-    min-width: 16rem;
-    width: 100%;
+    width: 16rem;
   }
 
   .dropdown-menu {
@@ -328,6 +330,10 @@ a:hover {
   }
 }
 
+.list-group {
+  width: 16rem;
+}
+
 .btn-primary {
   color: $text-on-primary;
 }
@@ -338,4 +344,17 @@ a:hover {
 
 .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .open>.dropdown-toggle.btn-outline-primary {
   color: $text-on-primary;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: $primary;
+}
+
+a.btn:hover, a.dropdown-item:hover {
+  text-decoration: none;
 }
