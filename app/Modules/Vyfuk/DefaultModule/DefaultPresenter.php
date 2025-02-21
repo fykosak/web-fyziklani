@@ -45,7 +45,7 @@ class DefaultPresenter extends BasePresenter
 
         $this->template->resultsReady = $this->resultsReady($year, $previousSeries);
 
-        $this->template->nearestEvent = $this->eventService->getNewest([10, 11, 12, 18]);
+        $this->template->nearestEvent = $this->getNearestEvent();
     }
 
     public function checkAllSolutions($series, $lang): bool
@@ -78,5 +78,20 @@ class DefaultPresenter extends BasePresenter
         $newsList = json_decode($json, true);
 
         return $newsList;
+    }
+
+    public function getNearestEvent(): \App\Models\Downloader\EventModel
+    {
+        $eventTypeIds = [10, 11, 12, 18];
+        $nearestEventDeadlines = [];
+        foreach ($eventTypeIds as $eventTypeId) {
+            if ($this->eventService->getNewest([$eventTypeId])->begin > new \DateTime()) {
+                $nearestEventDeadlines[$eventTypeId] = $this->eventService->getNewest([$eventTypeId])->begin;
+            }
+        }
+
+        asort($nearestEventDeadlines);
+
+        return $this->eventService->getNewest([array_keys($nearestEventDeadlines)[0]]);
     }
 }

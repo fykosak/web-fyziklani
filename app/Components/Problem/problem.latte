@@ -30,7 +30,10 @@
         <div class="card-body">
             <div class="card-title">
                 {if $problem->contest == 'vyfuk' && $problem->number == 1 && $problem->series < 7}
-                    <p><small><i>Tato úloha je určena pouze pro žáky šestých a sedmých ročníků. </i></small></p>
+                    <p><small><i>Tato úloha je určena pouze pro žáky šestých a sedmých ročníků.</i></small></p>
+                {/if}
+                {if $problem->contest == 'vyfuk' && $problem->number == 7 && $problem->series < 7}
+                    <p><small><i>K této úloze se vztahuje i náš naučný text – tzv. Výfučtení. To můžeš nalézt pod odkazem níže.</i></small></p>
                 {/if}
                 {$problem->task[$language->value]|noescape}
 
@@ -60,6 +63,17 @@
                         <a class="btn btn-secondary mr-2 mb-3" href={plink :Default:Section:howToExperiment}>
                             <i class="fas fa-rocket"></i>
                             Jak psát experimenty
+                        </a>
+                    {/if}
+                    {if $problem->number == 7}
+                        {php $serialPath = $problemService->getSerial($problem->contest, $series, $language->value)}
+                        {if $serialPath}
+                            <a class="btn btn-primary my-2 mr-4" href="{$serialPath}">
+                                <i class="far fa-file-pdf"></i><span class="skip-3px"></span>Text Výfučtení {$series->series}. série
+                            </a>
+                        {/if}
+                        <a class="btn btn-secondary my-2 mr-4" href={plink :Default:Separate:serialArchive}>
+                            <i class="fas fa-box-archive"></i><span class="skip-3px"></span> Archiv Výfučtení
                         </a>
                     {/if}
                 {/if}

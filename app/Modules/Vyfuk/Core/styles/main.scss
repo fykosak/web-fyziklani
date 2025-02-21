@@ -29,6 +29,7 @@ $border-radius: 6px;
 $btn-focus-width: 0;
 //$card-border-width: 6px;
 //$card-border-width: 0;
+$accordion-border-color: $primary-color;
 
 // Navbar
 $navbar-dark-color: $text-on-primary;
@@ -47,6 +48,7 @@ $flag-icons-path: '/node_modules/flag-icons/flags';
 @import "./other";
 @import "./results";
 @import "./about";
+@import "./events";
 
 @import '../../../../Components/Problem/problem';
 @import '../../../../Components/Problem/vyfuk';

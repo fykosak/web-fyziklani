@@ -1,0 +1,67 @@
+{block title}Archiv Výfučtení{/block}
+
+{block main}
+<div class="panel color-auto">
+    <section class="inner-container">
+        <h1>Archiv Výfučtení</h1>
+        <p>
+            Výfučtení je série naučných textů, které zveřejňujeme průběžně v brožurkách Výfuku. V každém Výfučtení se snažíme přiblížit zajímavá a poučná témata.
+        </p>
+        <p>
+            Autory textů jsou organizátoři Výfuku. Snažili jsme se o to, aby texty byly co nejvíce srozumitelné, protože se jedná o témata, která se často na základních školách neučí (nebo se vyučují jen velmi zběžně). Díky tomu máte jedinečnou šanci si rozšířit vaše vědomosti.
+        </p>
+    </section>
+    <section  class="inner-container">
+        <div class="accordion" id="yearsAccordion">
+        {foreach $yearsAndSeries as $year => $seriesList}
+            {if $hasAtLeastOneSerial[$year]}
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{$year}" aria-expanded="false" aria-controls="collapse{$year}">
+                        {$year}. ročník
+                    </button>
+                    </h2>
+                    <div id="collapse{$year}" class="accordion-collapse collapse" data-bs-parent="#yearsAccordion">
+                    <div class="accordion-body table-responsive">
+                        <table class="table table-borderless mb-0 text-center align-middle">
+                        <thead>
+                            <tr>
+                                {foreach $seriesList as $seriesNo}
+                                    {if $seriesNo <= 6}
+                                        {php $series = $problemService->getSeries('vyfuk', $year, $seriesNo)}
+                                        {php $serialPath = $problemService->getSerial('vyfuk', $series, $lang)}
+                                        {if $serialPath}
+                                            <th scope="col">{$seriesNo}. série</th>
+                                        {/if}
+                                    {/if}
+                                {/foreach}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {foreach $seriesList as $seriesNo}
+                                    {if $seriesNo <= 6}
+                                        {php $series = $problemService->getSeries('vyfuk', $year, $seriesNo)}
+                                        {php $serialPath = $problemService->getSerial('vyfuk', $series, $lang)}
+                                        {if $serialPath}
+                                            <td>
+                                                <a class="btn btn-primary my-2 mr-4" href={$serialPath}>
+                                                    <i class="far fa-file-pdf"></i><span class="skip-3px"></span> {$series->getSerialTopic('vyfuk', $lang)}
+                                                </a>
+                                            </td>
+                                        {/if}
+                                    {/if}
+                                {/foreach}
+                            </tr>
+                        </tbody>
+                        </table>
+                        {* TODO design tabulky *}
+                    </div>
+                    </div>
+                </div>
+            {/if}
+        {/foreach}
+        </div>
+    </section>
+</div>
+{/block}

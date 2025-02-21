@@ -31,9 +31,20 @@ class DefaultModule extends AbstractPageDisplayTestCase
             ['Default:Section', 'rules'],
             ['Default:Section', 'howToSolve'],
             ['Default:Section', 'howToExperiment'],
-            ['Default:Section', 'teachers'],
             // events
             ['Default:Events', 'default'],
+            ['Default:Events', 'dalsi'],
+            // ['Default:Events', 'detail'],
+            ['Default:Events', 'setkani'],
+            ['Default:Events', 'tabor'],
+            ['Default:Events', 'vikendovka'],
+            // results
+            ['Default:Results', 'default'],
+            // separate pages
+            ['Default:Separate', 'teachers'],
+            // ['Default:Separate', 'serialArchive'],
+            // titlepage
+            // ['Default:Default', 'default'],
         ]);
     }
 }

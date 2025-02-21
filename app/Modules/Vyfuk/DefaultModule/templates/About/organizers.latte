@@ -6,7 +6,7 @@
         <div class="col-md-6 col-xl-4 mb-4">
             <div class="card organizer-card h-100">
                 <img src="/media/photos/people/{$organizer['personId']}.jpg" class="card-img-top"
-                    onerror="this.src = '/images/organizer_default.svg'" alt="{$organizer['name']}">
+                    onerror="this.src = '{$basePath}/images/organizer_default.svg'" alt="{$organizer['name']}">
                 <h4 class="card-header">{if
                     $organizer['academicDegreePrefix']}{$organizer['academicDegreePrefix']}&#160;{/if}{$organizer['name']}{if
                     $organizer['academicDegreeSuffix']}&#160;{$organizer['academicDegreeSuffix']}{/if}</h4>
@@ -55,6 +55,7 @@
             </div>
         </div>
         {/foreach}
+        <p>Garantem semináře je <a href="https://www.mff.cuni.cz/cs/fakulta/organizacni-struktura/lide?hdl=477">doc. RNDr. Zdeněk Drozd, Ph.D.</a> z Katedry didaktiky fyziky MFF UK, která jej zastřešuje.</p>
     </div>
 </div>
 {/block}

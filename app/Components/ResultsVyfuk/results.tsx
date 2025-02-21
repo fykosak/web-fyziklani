@@ -30,16 +30,13 @@ type Tasks = {
 function Results({ data, series }: { data: { submits: { [key: string]: Submits; }, tasks: { [key: string]: Tasks; } }, series: number[] }) {
     const [selectedSeries, baseSetSelectedSeries] = useState(0);
     let tableManager: any = {};
-    [tableManager.sortColum, tableManager.setSortColum] = useState(selectedSeries < 1 ? "sum" : "s" + selectedSeries);
+    [tableManager.sortColum, tableManager.setSortColum] = useState(selectedSeries < 1 ? (selectedSeries == -1 ? "Psum" : "sum") : "s" + selectedSeries);
     [tableManager.sortAsc, tableManager.setSortAsc] = useState(false);
     [tableManager.hideColum, tableManager.setHideColum] = useState({});
     const setSelectedSeries = (value: number) => {
-        tableManager.setSortColum(value < 1 ? "sum" : "s" + value);
+        tableManager.setSortColum(value < 1 ? (value == -1 ? "Psum" : "sum") : "s" + value);
         baseSetSelectedSeries(value);
     }
-
-
-    selectedSeries < 1 ? "sum" : "s" + selectedSeries
 
     const sortedCategories = Object.keys(data.submits).sort((a, b) => {
         return parseInt(b.slice(-1)) - parseInt(a.slice(-1));
@@ -51,7 +48,7 @@ function Results({ data, series }: { data: { submits: { [key: string]: Submits; 
         if (number < 7)
             return (
                 <button
-                    className={`btn me-2 ${selectedSeries == number ? 'btn-primary' : 'btn-outline-primary'}`}
+                    className={`btn me-2 mb-2 ${selectedSeries == number ? 'btn-primary' : 'btn-outline-primary'}`}
                     onClick={() => setSelectedSeries(number)}
                 >
                     {number}. série
@@ -61,7 +58,7 @@ function Results({ data, series }: { data: { submits: { [key: string]: Submits; 
             return (
                 <button
                     onClick={() => setSelectedSeries(number)}
-                    className={`btn me-2 ${selectedSeries == number ? 'btn-primary' : 'btn-outline-primary'}`}
+                    className={`btn me-2 mb-2 ${selectedSeries == number ? 'btn-primary' : 'btn-outline-primary'}`}
                 >
                     {number - 7}. prázdninová série
                 </button>
@@ -70,9 +67,17 @@ function Results({ data, series }: { data: { submits: { [key: string]: Submits; 
     seriesSelection.push(
         <button
             onClick={() => setSelectedSeries(0)}
-            className={`btn me-2 ${selectedSeries == 0 ? 'btn-primary' : 'btn-outline-primary'}`}
+            className={`btn me-2 mb-2 ${selectedSeries == 0 ? 'btn-primary' : 'btn-outline-primary'}`}
         >
             Celkové výsledky
+        </button>
+    )
+    seriesSelection.push(
+        <button
+            onClick={() => setSelectedSeries(-1)}
+            className={`btn me-2 mb-2 ${selectedSeries == -1 ? 'btn-primary' : 'btn-outline-primary'}`}
+        >
+            Prázdninové výsledky
         </button>
     )
     let categoryContainers = [
@@ -88,17 +93,27 @@ function Results({ data, series }: { data: { submits: { [key: string]: Submits; 
             columns.push({ colKey: "rank", label: "#", sortable: false, numerical: false });
             columns.push({ colKey: "name", label: "Jméno", sortable: false, numerical: false });
             columns.push({ colKey: "school", label: "Škola", sortable: false, numerical: false });
+            let yearSum: number = 0;
+            let yearPrazdninySum: number = 0;
             for (let series in data.tasks[category]) {
                 let tasks = data.tasks[category][series].sort((a, b) => {
                     return a.label.localeCompare(b.label);
                 });
+                let seriesSum: number = 0;
                 for (let [key, t] of tasks.entries()) {
                     taskLockup[t.taskId] = columns.length;
-                    columns.push({ colKey: "s" + series + "." + t.label, label: t.label + " (" + t.points + " b)", sortable: true, numerical: true });
+                    columns.push({ colKey: "s" + series + "." + t.label, label: t.label + "\u00A0(" + t.points + "\u00A0b)", sortable: true, numerical: true });
+                    seriesSum += t.points;
                 }
-                columns.push({ colKey: "s" + series, label: (parseInt(series) > 6 ? String(parseInt(series) - 7) + ". p" : series) + ". s.", sortable: true, numerical: true });
+                columns.push({ colKey: "s" + series, label: (parseInt(series) > 6 ? "P" + String(parseInt(series) - 7) + "\u00A0(" + seriesSum + "\u00A0b)" : series + "\u00A0(" + seriesSum + "\u00A0b)"), sortable: true, numerical: true });
+                if (parseInt(series) > 6) {
+                    yearPrazdninySum += seriesSum;
+                } else {
+                    yearSum += seriesSum;
+                }
             }
-            columns.push({ colKey: "sum", label: "Celkem\nbodů", sortable: true, numerical: true });
+            columns.push({ colKey: "sum", label: "Celkem\u00A0bodů" + "\u00A0(" + yearSum + "\u00A0b)", sortable: true, numerical: true });
+            columns.push({ colKey: "Psum", label: "Celkem\u00A0bodů" + "\u00A0(" + yearPrazdninySum + "\u00A0b)", sortable: true, numerical: true });
 
             let outData = []
             for (let contestant of data.submits[category]) {
@@ -107,7 +122,10 @@ function Results({ data, series }: { data: { submits: { [key: string]: Submits; 
                 row["school"] = contestant.contestant.school;
                 row["rank"] = contestant.rank[0] == contestant.rank[1] ? String(contestant.rank[0]) + "." : String(contestant.rank[0]) + ".–" + String(contestant.rank[1]) + ".";
 
+                let hasTotalSum = false;
                 let totalSum = 0;
+                let prazdninySum = 0;
+                let hasPrazdninySum = false;
                 for (let series in data.tasks[category]) {
                     let tasks = data.tasks[category][series].sort((a, b) => {
                         return a.label.localeCompare(b.label);
@@ -124,9 +142,18 @@ function Results({ data, series }: { data: { submits: { [key: string]: Submits; 
                         }
                     }
                     row["s" + series] = seriesHasPoints ? seriesSum : "–";
-                    totalSum += seriesSum;
+                    if (parseInt(series) > 6) {
+                        //prazdninovky
+                        prazdninySum += seriesSum;
+                        hasPrazdninySum ||= seriesHasPoints;
+                    } else {
+                        //celkové vysledky
+                        totalSum += seriesSum;
+                        hasTotalSum ||= seriesHasPoints;
+                    }
                 }
-                row["sum"] = totalSum;
+                row["sum"] = hasTotalSum ? totalSum : '–';
+                row["Psum"] = hasPrazdninySum ? prazdninySum : '–';
                 outData.push(row);
             }
             return { columns: columns, data: outData };
@@ -135,8 +162,11 @@ function Results({ data, series }: { data: { submits: { [key: string]: Submits; 
         let keys: string[] = tableDef.columns.map((col: ColumnDef) => { return col.colKey });
         if (selectedSeries < 1) {
             hidden = keys.filter((v) => {
-                if (v == "name" || v == "school" || v == "sum" || v == "rank") return false;
-                return !/^s[0-9]$/.test(v);
+                if (v == "Psum" && selectedSeries == -1) return false;
+                if (v == "sum" && selectedSeries == 0) return false;
+                if (v == "name" || v == "school") return false;
+                console.log(v)
+                return !((selectedSeries == 0 && /^s[0-6]$/.test(v)) || (selectedSeries == -1 && /^s[0-9]+$/.test(v) && !/^s[1-6]$/.test(v)));
             })
         } else {
             hidden = keys.filter((v) => {
@@ -262,12 +292,14 @@ function SortTable({ tableDef }: { tableDef: TableDef }) {
 
 
     return (<>
-        <table className='table table-hover contest-results table-sm mb-0'>
-            <thead><tr>
-                {tableHeader}
-            </tr></thead>
-            <tbody>{tableBody}</tbody>
-        </table>
+        <div className='table-responsive-sm'>
+            <table className='table table-hover contest-results table-sm mb-0'>
+                <thead><tr>
+                    {tableHeader}
+                </tr></thead>
+                <tbody>{tableBody}</tbody>
+            </table>
+        </div>
         <button
             className="btn btn-primary button-collapse-header my-2"
             type="button"

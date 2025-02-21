@@ -6,4 +6,9 @@ parameters:
                 Zadani: Problems
                 Poradi: Results
                 Akce: Events
-                Archiv: Archive
+            actions:
+                cs:
+                    kontakt: contact
+                    historie: history
+                    organizatori: organizers
+                    proSponzory: sponsors

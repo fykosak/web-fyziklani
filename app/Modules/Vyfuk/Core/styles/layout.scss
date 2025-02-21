@@ -1,13 +1,16 @@
 html,
 body {
   height: 100%;
-  text-align: justify;
   // font-size: $base-font-size;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
   background-color: black;
+}
+
+p {
+  text-align: justify;
 }
 
 .btn-outline {
@@ -289,6 +292,22 @@ a:hover {
   }
 }
 
+.selector-container {
+  width: fit-content;
+
+  @media (min-width: 781px) {
+    float: right;
+  }
+}
+
+.tasks-container {
+  margin-top: 1.5rem;
+
+  @media (min-width: 781px) {
+    margin-top: 3rem;
+  }
+}
+
 .series-selector {
   .dropdown-toggle {
     min-width: 16rem;
@@ -338,4 +357,29 @@ a:hover {
 
 .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active, .open>.dropdown-toggle.btn-outline-primary {
   color: $text-on-primary;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: $primary;
+}
+
+a.btn:hover, a.dropdown-item:hover {
+  text-decoration: none;
+}
+
+.nav .dropdown-menu {
+  padding: 0 !important;
+}
+.nav li ul li:first-child a {
+  border-radius: 5px 5px 0 0;
+  padding-top: 0.35rem;
+}
+.nav li ul li:last-child a {
+  border-radius: 0 0 5px 5px;
+  padding-bottom: 0.35rem;
 }

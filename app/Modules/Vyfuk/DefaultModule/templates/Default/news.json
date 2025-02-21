@@ -1,6 +1,12 @@
 {
     "cs" : [
         {
+            "title": "Další vlna přihlašování na Zimní víkendovku",
+            "text": "Pokud jste měli zájem o Zimní víkendovku, ale nebyli jste mezi prvními 20 řešiteli, nezoufejte! V pátek 10. 1. od 20:00 se budou moct přihlásit všichni řešitelé, kteří se umístili v prvních 40. Jestli zbydou volná místa, tak je následně nabídneme všem ostatním řešitelům. Neváhejte se tedy přihlásit!",
+            "link": ":Default:Events:vikendovka",
+            "link-text": "Stránka zimní víkendovky"
+        },
+        {
             "title": "Zimní víkendovka",
             "text": "Dvě setkání a tábor nestačí? Od 31. ledna do 2. února nás příští rok čeká zcela nová výfučí akce – zimní víkendovka v Rožmberku nad Vltavou! Zapište si datum do kalendáře a čekejte na další podrobnosti.",
             "link": ":Default:Events:vikendovka",

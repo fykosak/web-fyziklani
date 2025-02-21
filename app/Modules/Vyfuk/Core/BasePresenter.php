@@ -58,7 +58,7 @@ abstract class BasePresenter extends \App\Modules\Core\ContestPresenter
 
         $items[] = new NavItem(
             new PageTitle('Pro učitele', 'fa-solid fa-user-graduate'),
-            ':Default:Section:teachers',
+            ':Default:Separate:teachers',
         );
 
         $items[] = new NavItem(

@@ -10,14 +10,14 @@
             <div>
                 Termín odevzdání: <strong>{$series->getDeadline()|date:"d. m. Y, H:i"}</strong>
             </div>
-            <a class="btn btn-secondary my-2" n:href="Section:howToEngage">
+            <a class="btn btn-secondary mt-2" n:href="Section:howToEngage">
                 <i class="fas fa-circle-info me-2"></i>Jak se zapojit
             </a>
-            <a class="btn btn-secondary my-2" n:href="Problems:Bingo">
+            <a class="btn btn-secondary mt-2" n:href="Problems:Bingo">
                 <i class="fas fa-gift me-2"></i>Výfučí bingo
             </a>
 
-            <div class="float-end">
+            <div class="selector-container mt-2">
                 <div class="dropdown series-selector">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,7 +31,7 @@
                             </li>
                             {foreach $seriesList as $seriesOption}
                             <a n:class="'list-group-item list-group-item-action', $series->year == $yearOption && $series->series == $seriesOption ? list-group-item-primary"
-                                href="{plink 'this' 'year'=>$yearOption, 'series'=>$seriesOption}">{$seriesOption > 6 ? $seriesOption - 7 . " p." : $seriesOption}</a>
+                                href="{plink 'this' 'year'=>$yearOption, 'series'=>$seriesOption}">{$seriesOption > 6 ? "P" . $seriesOption - 7 : $seriesOption}</a>
                             {/foreach}
                         </ul>
                         {/foreach}
@@ -41,24 +41,24 @@
                 <ul class="list-group list-group-horizontal-sm mt-2">
                     {foreach $yearsAndSeries[$series->year] as $seriesOption}
                     <a n:class="'list-group-item list-group-item-action text-center', $series->series == $seriesOption ? list-group-item-primary"
-                        href="{plink 'this' 'year'=>$series->year, 'series'=>$seriesOption}">{$seriesOption > 6 ? $seriesOption - 7 . " p." : $seriesOption}</a>
+                        href="{plink 'this' 'year'=>$series->year, 'series'=>$seriesOption}">{$seriesOption > 6 ? "P" . $seriesOption - 7: $seriesOption}</a>
                     {/foreach}
                 </ul>
                 {/if}
             </div>
         </div>
 
-        <div class="mt-5">
+        <div class="tasks-container">
             {php $serialPath = $problemService->getSerial('vyfuk', $series, $lang)}
             {php $batchPath = $problemService->getBatch('vyfuk', $series, $lang)}
             {if $serialPath}
-            <a class="btn btn-primary my-2 mr-4" href="{$serialPath}">
-                <i class="far fa-file-pdf"></i><span class="skip-3px"></span> Text seriálu {$series->series}.
+            <a class="btn btn-primary mt-2 mr-4" href="{$serialPath}">
+                <i class="far fa-file-pdf"></i><span class="skip-3px"></span> Text Výfučtení {$series->series}.
                 série
             </a>
             {/if}
             {if new Datetime() > $series->getDeadline() && $batchPath}
-            <a class="btn btn-primary my-2 mr-4" href="{$batchPath}">
+            <a class="btn btn-primary mt-2 mr-4" href="{$batchPath}">
                 <i class="far fa-file-pdf"></i><span class="skip-3px"></span> Brožurka s řešeními
             </a>
             {/if}

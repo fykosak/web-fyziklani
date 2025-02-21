@@ -39,6 +39,15 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     {block head}{/block}
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N91VVFJYMG"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){l}dataLayer.push(arguments);{r}
+    gtag('js', new Date());
+
+    gtag('config', 'G-N91VVFJYMG');
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
         integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
         crossorigin="anonymous"></script>
@@ -66,7 +75,7 @@
 
 <body>
     {block body}
-    {control navigation "/images/logo.svg", "Vyfuk.org", false}
+    {control navigation "{$basePath}/images/logo.svg", "Vyfuk.org", false}
     <main>
         {block main}
         <div class="panel color-light">
@@ -96,20 +105,20 @@
                 <div class="category">
                     <div class="category-title">Sponzoři</div>
                     <div class="category-sponsors">
-                        <a href="https://www.prusa3d.com/cs" style="text-align: center" target="_blank">
-                            <img src="{$basePath}/images/logos/prusa_logo.png" alt="Prusa logo"
+                        <a href="https://www.prusa3d.com" style="text-align: center" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/prusa_logo.png" alt="Prusa logo"
                                 style="max-height: 5rem; max-width: 12rem">
                         </a>
-                        <a href="http://zemekvet.cz/" style="text-align: center" target="_blank">
-                            <img src="{$basePath}/images/logos/zemekvet_logo.png" alt="Mindok logo"
+                        <a href="http://zemekvet.cz" style="text-align: center" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/zemekvet_logo.png" alt="Mindok logo"
                                 style="max-height: 5rem; max-width: 12rem">
                         </a>
-                        <a href="https://prometheus-nakl.cz/" style="text-align: center" target="_blank">
-                            <img src="{$basePath}/images/logos/prometheus_logo.png" alt="Prometheus logo"
+                        <a href="https://prometheus-nakl.cz" style="text-align: center" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/prometheus_logo.png" alt="Prometheus logo"
                                 style="max-height: 5rem; max-width: 12rem">
                         </a>
-                        <a href="https://www.factorio.com/" style="text-align: center" target="_blank">
-                            <img src="{$basePath}/images/logos/factorio_logo.png" alt="Čez logo"
+                        <a href="https://www.factorio.com" style="text-align: center" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/factorio_logo.png" alt="Čez logo"
                                 style="max-height: 5rem; max-width: 12rem">
                         </a>
                     </div>
@@ -124,7 +133,7 @@
                             src="{$basePath}/images/logo.svg" alt="Výfuk" /></div>
                     <p>
                         Korespondenční seminář Výfuk je organizován studenty a přáteli <a
-                            href="https://www.mff.cuni.cz/">Matematicko-fyzikální fakulty Univerzity Karlovy</a>.
+                            href="https://www.mff.cuni.cz">Matematicko-fyzikální fakulty Univerzity Karlovy</a>.
                         Je zastřešen Oddělením propagace a mediální komunikace MFF UK a podporován Katedrou didaktiky
                         fyziky MFF UK, jejími zaměstnanci a Jednotou českých matematiků a fyziků.
                     </p>
@@ -142,7 +151,7 @@
                             <li><a n:href=":Default:About:default">O nás</a></li>
                             <li><a n:href=":Default:Section:rules">Pravidla</a></li>
                             <li><a n:href=":Default:Section:howToEngage">Jak se zapojit</a></li>
-                            <li><a n:href=":Default:Section:teachers">Pro učitele</a></li>
+                            <li><a n:href=":Default:Separate:teachers">Pro učitele</a></li>
                             <li><a n:href=":Default:About:sponsors">Podpořte nás</a></li>
                             <li><a n:href=":Default:About:contact">Kontakt</a></li>
                         </ul>
@@ -156,7 +165,7 @@
                                 <div>Sledujte nás</div>
                                 <ul>
                                     <li>
-                                        <a style="margin-right: 1.5rem" href="https://www.instagram.com/ksvyfuk/"
+                                        <a style="margin-right: 1.5rem" href="https://www.instagram.com/ksvyfuk"
                                             target="_blank">
                                             <i class="bi bi-instagram"></i>
                                         </a>
@@ -172,10 +181,6 @@
                                             href="https://www.youtube.com/channel/UCUBv3Ydd-laLSY5DMimoE7w"
                                             target="_blank">
                                             <i class="bi bi-youtube"></i>
-                                        </a>
-                                        <a style="margin-right: 1.5rem" href="https://www.tiktok.com/@ksvyfuk"
-                                            target="_blank">
-                                            <i class="bi bi-tiktok"></i>
                                         </a>
                                     </li>
                                 </ul>

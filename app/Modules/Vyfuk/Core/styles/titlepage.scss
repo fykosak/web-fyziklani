@@ -47,6 +47,15 @@
 
 .news-card {
   height: 100%;
-  color: black;
   border-color: $primary-color;
+}
+
+.countdown-container {
+  background-color: $complementary-color;
+  text-align: center;
+}
+
+.countdown-text {
+  color: white !important;
+  margin: 0;
 }

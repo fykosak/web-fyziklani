@@ -1,48 +1,147 @@
-{block title}Pro Sponzory{/block}
+{block title}Pro sponzory{/block}
 
 {block main}
 <div class="panel color-auto">
-    <h2 class="inner-container">Aktuální partneři</h2>
     <section class="inner-container">
-        <h3>Prusa 3D tiskárny</h3>
-            <p>
-                Firma Průša research a.s. nám darovala stavebnici tiskárny i3 MK3S+ a Original MK4. Tiskárny seminář využívá primárně k výrobě originálních propagačních předmětů a na 
-                míru dělaných pomůcek k experimentům. Obě tiskárny nám rovněž umožnily edukovat naše řešitele o tématu 3D tisku, což se velice rychle stalo jednou z nejoblíbenějších aktivit semináře.</p>
-        <h3>Nadační fond Zeměkvět</h3>
-            <p>
-                Nadační fond Zeměkvět seminář podpořil finančním příspěvkem v celkové výši 80 000 Kč. Tyto peníze semináři pomáhají udržet si vysokou kvalitu i přes neustálý růst řešitelů a s tím spojené rostoucí organizační, časové ale hlavně finanční náklady.</p>
-        <h3>Prometheus</h3>
-            <p>
-                Nakladatelství Prometheus nám každoročně věnuje několik učebnic či jiných vzdělávacích knih, které nabízíme našim řešitelům jako ceny za jejich skvělé výsledky v korespondenční soutěži. </p>
-        <h3>Factorio</h3>
-            <p>
-                Společnost Factorio nám věnovala klíčenky a klíče ke své unikátní hře rozvíjející logické myšlení a strategii. Tyto klíče nabízíme nejúspěšnějším řešitelům jako odměny za jejich umístění v soutěži, či jako ceny na naších prezenčních akcích.
-            </p>
-        <h3>Bitperia</h3>
-            <p>
-                Se společností Bitperia jsme navázali spolupráci ve formě několika naučných přednášek na téma bitcoin na našem letním táboře. Účastnící za absolvování tohoto cyklu obdrželi edukativní knihy od Bitperii, aby mohli nadále rozvíjet svůj zájem o téma kryptoměn.
-            </p>
-        <h3>Humusoft</h3>
-            <p>
-                Firma humusoft nás podpořila finančním příspěvkem v celkové výši 8 000 kč, který seminář využil především k uhrazení nákladů na naše unikátně koncipované akce (v tomto případě setkání řešitelů a letní tábor).
-            </p>
-        <h3>Anamita designs</h3>
-            <p>
-                Společnost amanita designs seminář podpořila klíčí k několika hrám z jejich dílny. Tyto klíče nabízíme řešitelům jako odměny za práci, kterou v průběhu roku v korespondeční soutěži odvedli.
-            </p>
-        <h3>Keen softwere house</h3>
-            <p>
-                Společnost keen softwere house nás podpořila klíči ke své hře Space Engineers. Tyto klíče jsme předali nejlepším účastníkům jako odměny za jejich umístění v soutěži.
-            </p>
-    </section>
-</div>
-<div class="panel color-auto">
-    <section class="inner-container">
+        <h1>Sponzoři Výfuku</h1>
+        <p>
+            Podpora od našich sponzorů je klíčová pro úspěšné a stabilní fungování semináře. Díky navázaným partnerstvím můžeme udržovat vysokou kvalitu našich aktivit,
+            reagovat na rostoucí zájem účastníků, vytvářet nové vzdělávací příležitosti a rozvíjet jejich zájem o všechny přírodní vědy. Finanční příspěvky,
+            materiální dary i věcné ceny přímo přispívají k motivaci a podpoře stovek mladých talentů, kteří díky semináři objevují krásy fyziky, technologií a vědy jako takové.
+            Společně tvoříme prostředí, které formuje budoucí generace inovátorů a vědců.
+        </p>
         <h2>Chcete být na této stránce?</h2>
-            <p>
-                Dává vám naše činnost smysl? Máte chuť nás podpořit? Pokud ano, <a n:href=":Default:About:contact">napište</a> nám a určitě se na něčem domluvíme.
-                Obzvláště vděční budeme za finanční podporu našich akcí (<a n:href=":Default:Events:Default">táboru a setkání</a>) nebo za ceny pro nejlepší řešitele.
-            </p>
+        <p>
+            Dává vám naše činnost smysl? Máte chuť nás podpořit? Pokud ano, <a n:href=":Default:About:contact">napište</a> nám a určitě se na něčem domluvíme.
+            Obzvláště vděční budeme za finanční podporu našich <a n:href=":Default:Events:Default">akcí</a> nebo za ceny pro nejlepší řešitele.
+        </p>
+    </section>
+    <section class="inner-container">
+        <h2>Aktuální partneři</h2>
+        {* TODO nějak spravit styly aby to nebylo takhle rozbité *}
+        <div class="row row-cols-1 row-cols-md-4 g-3">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="sponsor-logo-container">
+                        <a href="https://www.prusa3d.com" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/prusa_logo.png" class="card-img-top sponsor-logo-img px-3 pt-3">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Průša research a.s.</h5>
+                        <p class="card-text">
+                            Firma Průša research a.s. nám darovala stavebnici tiskárny i3 MK3S+ a Original MK4. Tiskárny seminář využívá primárně k výrobě originálních propagačních předmětů a na
+                            míru dělaných pomůcek k experimentům. Obě tiskárny nám rovněž umožnily edukovat naše řešitele o tématu 3D tisku, což se velice rychle stalo jednou z nejoblíbenějších aktivit semináře.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="sponsor-logo-container">
+                        <a href="http://zemekvet.cz" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/zemekvet_logo.png" class="card-img-top sponsor-logo-img px-3 pt-3">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Nadační fond Zeměkvět</h5>
+                        <p class="card-text">
+                            Nadační fond Zeměkvět seminář podpořil finančním příspěvkem v celkové výši 80 000 Kč. Tyto peníze semináři pomáhají udržet si vysokou kvalitu i přes neustálý růst řešitelů a s tím spojené rostoucí organizační, časové ale hlavně finanční náklady.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="sponsor-logo-container">
+                        <a href="https://prometheus-nakl.cz" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/prometheus_logo.png" class="card-img-top sponsor-logo-img px-3 pt-3">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Prometheus</h5>
+                        <p class="card-text">
+                            Nakladatelství Prometheus nám každoročně věnuje několik učebnic či jiných vzdělávacích knih, které nabízíme našim řešitelům jako ceny za jejich skvělé výsledky v korespondenční soutěži.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="sponsor-logo-container">
+                        <a href="https://www.factorio.com" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/factorio_logo.png" class="card-img-top sponsor-logo-img px-3 pt-3">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Factorio</h5>
+                        <p class="card-text">
+                            Společnost Factorio nám věnovala klíčenky a klíče ke své unikátní hře rozvíjející logické myšlení a strategii. Tyto klíče nabízíme nejúspěšnějším řešitelům jako odměny za jejich umístění v soutěži, či jako ceny na naších prezenčních akcích.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="sponsor-logo-container">
+                        <a href="https://www.bitperia.cz" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/bitperia_logo.png" class="card-img-top sponsor-logo-img px-3 pt-3">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Bitperia</h5>
+                        <p class="card-text">
+                            Se společností Bitperia jsme navázali spolupráci ve formě několika naučných přednášek na téma bitcoin na našem letním táboře. Účastnící za absolvování tohoto cyklu obdrželi edukativní knihy od Bitperii, aby mohli nadále rozvíjet svůj zájem o téma kryptoměn.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="sponsor-logo-container">
+                        <a href="https://www.humusoft.cz" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/humusoft_logo.png" class="card-img-top sponsor-logo-img px-3 pt-3">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Humusoft</h5>
+                        <p class="card-text">
+                            Firma humusoft nás podpořila finančním příspěvkem v celkové výši 8 000 Kč, který seminář využil především k uhrazení nákladů na naše unikátně koncipované akce (v tomto případě setkání řešitelů a letní tábor).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="sponsor-logo-container">
+                        <a href="https://amanita-design.net" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/amanita_designs_logo.png" class="card-img-top sponsor-logo-img px-3 pt-3">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Amanita designs</h5>
+                        <p class="card-text">
+                            Společnost amanita designs seminář podpořila klíčí k několika hrám z jejich dílny. Tyto klíče nabízíme řešitelům jako odměny za práci, kterou v průběhu roku v korespondeční soutěži odvedli.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="sponsor-logo-container">
+                        <a href="https://www.keenswh.com/" target="_blank">
+                            <img src="{$basePath}/images/sponsor_logos/ksw_logo.svg" class="card-img-top sponsor-logo-img px-3 pt-3">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Keen Software House</h5>
+                        <p class="card-text">
+                            Společnost Keen Software House nás podpořila klíči ke své hře Space Engineers. Tyto klíče jsme předali nejlepším účastníkům jako odměny za jejich umístění v soutěži.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 {/block}
